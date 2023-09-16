@@ -1,6 +1,6 @@
 <launch>
 <arg name="description" default="microstrain_record"/>
-<arg name="hwil" default="false"/>
+<arg name="hwil" default="true"/>
 
 <node pkg="can_to_ros" type="vehicle_interface" name="vehicle_interface" output="screen" respawn="true" respawn_delay="2" />
 
