@@ -21,5 +21,5 @@ else
 fi
 popd
 
-runuser -l $LIBPANDA_USER -c /etc/libpanda.d/apps/microstrain-3dmg-ros/install3dmg.sh
+runuser -l $LIBPANDA_USER -c /etc/libpanda.d/apps/3dmg/install3dmg.sh
 
