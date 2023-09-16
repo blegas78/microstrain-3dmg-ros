@@ -1,0 +1,16 @@
+<launch>
+<arg name="description" default="microstrain_record"/>
+<arg name="hwil" default="false"/>
+
+<node pkg="can_to_ros" type="vehicle_interface" name="vehicle_interface" output="screen" respawn="true" respawn_delay="2" />
+
+<node pkg="can_to_ros" type="topic_check.py" name="topic_check" output="screen" />
+
+
+<node pkg="microstrain-3dmg-ros" type="microstrain_reader" name="microstrain_reader" output="screen" />
+
+<node pkg="can_to_ros" type ="subs" name="subs" output="screen" if="$(arg hwil)">
+</node>
+
+<node pkg="can_to_ros" type ="rosbag_record.sh" name="bashscript2" output="screen" args="$(arg description) $(arg hwil)" />
+</launch>
