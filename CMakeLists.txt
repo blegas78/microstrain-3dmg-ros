@@ -14,9 +14,9 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   sensor_msgs
  # message_generation
-  tf2
-  tf2_ros
-  geodesy
+#  tf2
+#  tf2_ros
+#  geodesy
 )
 
 ## System dependencies are found with CMake's conventions
