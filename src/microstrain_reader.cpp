@@ -76,6 +76,18 @@ int16_t readEEPROM(int serial_port, unsigned char location) {
 }
 
 
+geometry_msgs::Quaternion quaternionMultiplication(const geometry_msgs::Quaternion& p, const geometry_msgs::Quaternion& q ) {
+    geometry_msgs::Quaternion result;
+    
+    // Strange ordering courtesy of https://www.matec-conferences.org/articles/matecconf/pdf/2019/41/matecconf_cscc2019_01060.pdf
+    result.w = p.w*q.w - p.x*q.x - p.y*q.y - p.z*q.z;
+    result.x = p.w*q.x + p.x*q.w + p.y*q.z - p.z*q.y;
+    result.y = p.w*q.y + p.y*q.w + p.z*q.x - p.x*q.z;
+    result.z = p.w*q.z + p.z*q.w + p.x*q.y - p.y*q.x;
+    
+    return result;
+}
+
 int main(int argc, char **argv) {
     ros::init(argc, argv, "microstrain_reader", ros::init_options::AnonymousName);
     ROS_INFO("microstrain_reader is running...");
@@ -515,6 +527,13 @@ int main(int argc, char **argv) {
                 imu.orientation.x /= 8192;
                 imu.orientation.y /= 8192;
                 imu.orientation.z /= 8192;
+                
+                geometry_msgs::Quaternion zRotation;
+                zRotation.w = 0.7071067812;
+                zRotation.x = 0.;
+                zRotation.y = 0.;
+                zRotation.z = 0.7071067812;
+                imu.orientation = quaternionMultiplication(zRotation, imu.orientation);
                 
                 
                 // https://www.kjmagnetics.com/globe.asp
