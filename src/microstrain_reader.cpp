@@ -144,15 +144,15 @@ int main(int argc, char **argv) {
     
     sensor_msgs::Imu imu;
     imu.header.frame_id = "base_link";
-    imu.orientation_covariance[0 + (3*0)] = 5*3.1415926535897/180;  // data sheet says accurate to 5 degrees, but more realistically 2
-    imu.orientation_covariance[1 + (3*1)] = 5*3.1415926535897/180;
-    imu.orientation_covariance[2 + (3*2)] = 5*3.1415926535897/180;
-    imu.angular_velocity_covariance[0 + (3*0)] = 0.05;  // complete guess
-    imu.angular_velocity_covariance[1 + (3*1)] = 0.05;
-    imu.angular_velocity_covariance[2 + (3*2)] = 0.05;
-    imu.linear_acceleration_covariance[0 + (3*0)] = 0.05;   // Units are m/s^2.  complete guess
-    imu.linear_acceleration_covariance[1 + (3*1)] = 0.05;
-    imu.linear_acceleration_covariance[2 + (3*2)] = 0.05;
+    imu.orientation_covariance[0 + (3*0)] = 15*3.1415926535897/180;  // data sheet says accurate to 5 degrees, but more realistically 2
+    imu.orientation_covariance[1 + (3*1)] = 15*3.1415926535897/180;
+    imu.orientation_covariance[2 + (3*2)] = 15*3.1415926535897/180;
+    imu.angular_velocity_covariance[0 + (3*0)] = 0.1;  // complete guess
+    imu.angular_velocity_covariance[1 + (3*1)] = 0.1;
+    imu.angular_velocity_covariance[2 + (3*2)] = 0.1;
+    imu.linear_acceleration_covariance[0 + (3*0)] = 0.2;   // Units are m/s^2.  complete guess
+    imu.linear_acceleration_covariance[1 + (3*1)] = 0.2;
+    imu.linear_acceleration_covariance[2 + (3*2)] = 0.2;
     
     sensor_msgs::MagneticField magneticField;
     magneticField.header.frame_id = "base_link";
